@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-      Schema::create('quizz_user', function (Blueprint $table) 
+      Schema::create('quiz_user', function (Blueprint $table) 
       {
         $table->id();
         // $table->foreign('user_id')->constrained()->onDelete('cascade');
         // $table->foreign('quizz_id')->constrained()->onDelete('cascade');
-        $table->foreign('user_id')->references('id')->on('users');
-        $table->foreign('quizz_id')->references('id')->on('quizzes');
+        $table->unsignedBigInteger('user_id');
+        $table->unsignedBigInteger('quiz_id');
 
-        $table->unique(['user_id', 'quizz_id']);
+
+        $table->foreign('user_id')->references('id')->on('users');
+        $table->foreign('quiz_id')->references('id')->on('quizzes');
+
+        $table->unique(['user_id', 'quiz_id']);
         $table->timestamps();
         });
     }
@@ -27,5 +31,5 @@ return new class extends Migration
   /**
      * Reverse the migrations.
      */
-  public function down(): void{Schema::dropIfExists('quizz_user');}
+  public function down(): void{Schema::dropIfExists('quiz_user');}
 };
