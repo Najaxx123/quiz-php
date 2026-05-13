@@ -9,7 +9,7 @@ use App\Models\Quiz;
 class QuizController extends Controller
 {
     function index() {
-        $quizs = Quiz::all();
-        return view('quiz', ['quizs' => $quizs]);
+        $quizzes = Quiz::all();
+        return view('quiz', ['quizzes' => $quizzes]);
     }
 }
